@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,8 +15,10 @@ from dto import (
 )
 
 # Configuration
-BACKEND_URL = 'http://localhost:3007'  # Target backend for forwarding
+dotenv.load_dotenv('.env')
+
 LOG_STORAGE: List[Dict[str, Any]] = []  # In-memory storage for logs
+BACKEND_URL = os.environ['BACKEND_URL']  # Target backend for forwarding
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
