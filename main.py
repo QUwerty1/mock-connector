@@ -7,6 +7,7 @@ import httpx
 import logging
 from datetime import datetime
 from typing import List, Dict, Any
+import dotenv
 from dto import (
     KeyboardRequest, KeyboardResponse, KeyboardRequestUpdate,
     Message, EnterKeyboard, Image, ImageURL, Command,
