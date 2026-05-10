@@ -4,15 +4,13 @@ WORKDIR /app
 
 RUN apk --no-cache add git
 
-RUN git clone https://github.com/QUwerty1/mock-connector.git .
+COPY . .
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-EXPOSE 3000
+ENV PORT=3001
+ENV BACKEND_URL="localhost:8000"
 
-ENV URL=""
-ENV TOKEN=""
-ENV BACKEND_URL=""
+EXPOSE ${PORT}
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT
